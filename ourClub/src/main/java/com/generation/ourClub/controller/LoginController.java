@@ -1,4 +1,4 @@
-package com.generation.ourClub.Usuarios;
+package com.generation.ourClub.controller;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.generation.ourClub.model.Usuario;
+import com.generation.ourClub.service.UsuariosService;
+
 @RestController
-@RequestMapping(path="/api/usuarios/login/")//es para mapear con la ruta
+@RequestMapping(path="/api/login/")//es para mapear con la ruta
 public class LoginController {
 
 	private final UsuariosService usuariosService;//constante para traer los usuarios de usuario service
@@ -19,14 +22,11 @@ public class LoginController {
 		this.usuariosService = usuariosService;
 	}//constructor
 	
-	@GetMapping
-	public ArrayList<Usuario> imprime(){
-		return usuariosService.imprime();
-	}//getUsuarios
 	
 	@PostMapping
-	public Usuario loginUsuario(@RequestBody Usuario usuario) {
-		return usuariosService.loginUsuario(usuario);
-	}//post
-	
+	public String login (@RequestBody Usuario usuario) {
+		return usuariosService.validateUsuario(usuario);
+		
+	}
+
 }//class LoginController
