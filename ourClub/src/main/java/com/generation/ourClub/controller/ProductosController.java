@@ -1,6 +1,7 @@
 package com.generation.ourClub.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +31,7 @@ public class ProductosController {
 	}//constructor
 	
 	@GetMapping
-	public ArrayList<Producto> getProductos(){
+	public List<Producto> getProductos(){
 		return productosService.getProductos();
 	}//getProductos
 	
