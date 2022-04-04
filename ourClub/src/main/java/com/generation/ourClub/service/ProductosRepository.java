@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.generation.ourClub.model.Producto;
-import com.generation.ourClub.model.Usuario;
+
 
 public interface ProductosRepository extends JpaRepository<Producto, Long>{
 	@Query("SELECT p FROM Producto p WHERE p.nombre=?1")

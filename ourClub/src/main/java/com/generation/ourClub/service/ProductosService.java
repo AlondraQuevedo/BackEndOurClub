@@ -1,33 +1,30 @@
 package com.generation.ourClub.service;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 import org.springframework.stereotype.Service;
 
 import com.generation.ourClub.model.Producto;
 
+
 @Service //decir que es un servicio
 public class ProductosService {
 
+	public final ProductosRepository productosRepository;
 	public final ArrayList<Producto> lista = new ArrayList<Producto>();
 	
 	//CONSTRUCTOR
-	public ProductosService() {
-		lista.add(new Producto("Air force 1", 
-				"Este modelo cuenta con colores discretos naranja y gris, medio-tobillo, brinda comodidad a su uso",
-				1200.00, 27.0, 10, "imagen1.jpg"));
-		lista.add( new Producto("Air force 2", 
-				"Este modelo cuenta con colores discretos naranja y gris, medio-tobillo, brinda comodidad a su uso",
-				1500.00, 28.0, 12, "imagen2.jpg"));
-		lista.add( new Producto("Air force 3", 
-				"Este modelo cuenta con colores discretos naranja y gris, medio-tobillo, brinda comodidad a su uso",
-				1300.00, 26.0, 7, "imagen3.jpg"));
+	public ProductosService(ProductosRepository productosRepository) {
+		this.productosRepository = productosRepository;
 	}//constructor
-	
-	//crea el getproductos desde productocontroller
-	public ArrayList<Producto> getProductos() {
-		return lista;//regresa lista
+	public List<Producto> getProductos() {
+		return productosRepository.findAll();
+
+
 	}//getProductos
+
 
 	//GETPRODUCTO
 	//crea el getproducto desde productocontroller

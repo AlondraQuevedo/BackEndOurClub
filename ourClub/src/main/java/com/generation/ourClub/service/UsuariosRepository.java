@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import com.generation.ourClub.model.Usuario;
 
 public interface UsuariosRepository extends JpaRepository<Usuario, Long>{
-	@Query("SELECT u FROM Usuario u WHERE u.username=?1")
-	Optional<Usuario>findByUsername (String username);
+	@Query("SELECT u FROM Usuario u WHERE u.correo=?1")
+	Optional<Usuario>findByUsername (String correo);
 	
 
 

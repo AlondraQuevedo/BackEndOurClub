@@ -1,6 +1,18 @@
 package com.generation.ourClub.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Producto {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idproducto", unique=true, nullable=false)
 	//propiedades de producto
 	private String nombre;
 	private String descripcion;
@@ -26,8 +38,7 @@ public class Producto {
 	
 	//CONSTRUCTOR VACIO
 	public Producto() {
-		total++;
-		this.id = total;
+		
 	}//constructor
 
 	//GETTERS Y SETTERS
