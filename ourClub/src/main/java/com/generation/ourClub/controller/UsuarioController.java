@@ -1,7 +1,8 @@
-package com.generation.ourClub.Usuarios;
+package com.generation.ourClub.controller;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.generation.ourClub.model.Usuario;
+import com.generation.ourClub.service.UsuariosService;
 
 
 @RestController
@@ -23,7 +27,7 @@ public class UsuarioController {
 	}//constructor
 	
 	@GetMapping
-	public ArrayList<Usuario> getUsuarios(){
+	public List<Usuario> getUsuarios(){
 		return usuariosService.getUsuarios();
 	}//getUsuarios
 	
@@ -35,8 +39,8 @@ public class UsuarioController {
 	//postmapping para agregar usuario
 	//POST USUARIO
 	@PostMapping
-	public Usuario addUsuario(@RequestBody Usuario usuario) {
-		return usuariosService.addUsuario(usuario);
+	public void  addUsuario(@RequestBody Usuario usuario) {
+		 usuariosService.addUsuario(usuario);
 	}//add usuario
 	
 	//crear loginController para validar usuario y contraseña si so correctos

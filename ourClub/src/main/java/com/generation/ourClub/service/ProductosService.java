@@ -1,8 +1,10 @@
-package com.generation.ourClub.Productos;
+package com.generation.ourClub.service;
 
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
+
+import com.generation.ourClub.model.Producto;
 
 @Service //decir que es un servicio
 public class ProductosService {
