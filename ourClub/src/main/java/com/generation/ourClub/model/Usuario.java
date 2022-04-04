@@ -1,6 +1,20 @@
-package com.generation.ourClub.Usuarios;
+package com.generation.ourClub.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 
 public class Usuario {
+@Id	
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+@Column(name="idusuario", unique=true, nullable=false)
+	
 
 	//propiedades del usuario
 	private String nombre;

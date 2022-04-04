@@ -1,4 +1,4 @@
-package com.generation.ourClub.Productos;
+package com.generation.ourClub.model;
 
 public class Producto {
 	//propiedades de producto
