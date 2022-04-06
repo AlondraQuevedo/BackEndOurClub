@@ -2,7 +2,7 @@ package com.generation.ourClub.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -24,65 +24,46 @@ public class ProductosService {
 
 
 	}//getProductos
-
-
-	//GETPRODUCTO
-	//crea el getproducto desde productocontroller
-	public Producto getProducto(Long prodId) {
-		Producto tmpProd=null;//inicializa el producto temporal
-		//foreach
-		for (Producto producto : lista) {
-			if (producto.getId() ==prodId) {
-				tmpProd = producto; //tmpProd es un producto temporal
-				break;
-			}//if==prodId
-		}//foreach
-		return tmpProd;
-	}//getproducto
-
-	//DELETE PRODUCTO
-	//crea el deleteproducto desde productocontroller
-	public Producto deleteProducto(Long prodId) {
-		Producto tmpProd=null;//inicializa el producto temporal
-		//foreach
-		for (Producto producto : lista) {
-			if (producto.getId() ==prodId) {
-				//remueve el elemento
-				tmpProd = lista.remove(lista.indexOf(producto)); //tmpProd es un producto temporal
-				break;
-			}//if==prodId
-		}//foreach
-		return tmpProd;
-	}//deleteproducto
-	
-	//POST PRODUCTO
-	//crea el deleteproducto desde productocontroller
-	public Producto addProducto(Producto producto) {
-		lista.add(producto);
-		return producto;
-	}//addProducto
-	
-	//PUT PRODUCTO
-	public Producto updateProducto(Long proId, String nombre, String descripcion, double precio, double talla, int existencia, String uRL_imagen) {
-		
-		Producto tmpProd = null;
-		for (Producto producto : lista) {
-			if(producto.getId()==proId) {
-				if (nombre != null) producto.setNombre(nombre);
-				if (descripcion != null)producto.setDescripcion(descripcion);
-				if(precio>0) producto.setPrecio(precio);
-				if(talla>0) producto.setTalla(talla);
-				if(talla>0) producto.setTalla(talla);
-				if(existencia>0) producto.setExistencia(existencia);
-				if(uRL_imagen != null) producto.setURL_imagen(uRL_imagen);
-				tmpProd=producto;
-				break;
-		 
-			}//if
-		}//foreach
-
-		return tmpProd;
+	public Producto getProducto(Long id) {
+		return productosRepository.findById(id).orElseThrow(
+				()-> new IllegalStateException("El producto no existe  con el id "+ id + " no existe.")
+				
+				);
 	}
+
+	//POST PRODUCTO
+		public Producto addProducto(Producto producto) {
+			Producto tmpProducto = null;
+			Optional<Producto> prodByName=productosRepository.findByNombre(producto.getNombre());
+			if(prodByName.isPresent()) {
+				throw new IllegalStateException("El Producto con el nombre [" + producto.getNombre() + 
+						"] YA existe."); 	
+			} else {
+				productosRepository.save(producto);
+				tmpProducto = producto;
+			}//else 
+			return tmpProducto;	//addProducto
+		}
+
+	//PUT PRODUCTO
+			public Producto updateProducto(Long id,String nombre, String descripcion,Double precio,Double talla, int existencia, int categoria_idcategorias, String uRL_imagen ) {
+				Producto tmpProducto=null;
+				if(productosRepository.existsById(id)){
+					tmpProducto=productosRepository.findById(id).get();
+				if(nombre!=null)tmpProducto.setNombre(nombre);
+				if(descripcion!=null)tmpProducto.setDescripcion(descripcion);
+				if(uRL_imagen!=null)tmpProducto.setURL_imagen(uRL_imagen);
+				if(precio!=null && precio.doubleValue()>0)tmpProducto.setPrecio(precio.doubleValue());
+				
+				productosRepository.save(tmpProducto);
+				}else {
+					System.out.println("No existe el producto con el id" + id);
+				}
+				return tmpProducto;
+				
+			}
+		 
+	
 
 	
 }//class productosService

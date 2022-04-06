@@ -50,11 +50,14 @@ public final UsuariosRepository usuariosRepository;
 
 	public String validateUsuario(Usuario usuario) {
 		String res="Nombre de usuario o contraseña incorrectos ";
-		Optional <Usuario> userByName=usuariosRepository.findByUsername(usuario.getNombre());
+		Optional <Usuario> userByName=usuariosRepository.findByUsername(usuario.getCorreo());
 		if(userByName.isPresent()) {
 			Usuario u=userByName.get();
-			if(u.getContrasena().equals(usuario.getContrasena()))
-			res="OK";
+			System.out.println("que esta pasando!!");
+			if(u.getContrasena().equals(usuario.getContrasena())) {
+				res="OK";
+			}
+			
 		}
 		return res;
 

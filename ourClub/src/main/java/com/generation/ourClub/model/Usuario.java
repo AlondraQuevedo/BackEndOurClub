@@ -8,89 +8,99 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
-
+@Table(name = "usuario")
 public class Usuario {
-@Id	
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-@Column(name="idusuario", unique=true, nullable=false)
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idusu", unique = true, nullable = false)
 
-	//propiedades del usuario
+	// propiedades del usuario
+	private Long id;
 	private String nombre;
 	private String correo;
 	private String contrasena;
 	private String telefono;
-	private int id;
-	private static int total = 0;
+	private int rol_idrol;
 	
-	//CONSTRUCTOR
-	public Usuario(String nombre, String correo, String contrasena, String telefono) {
+
+	// CONSTRUCTOR
+	public Usuario(Long id, String nombre, String correo, String contrasena, String telefono, int idrol) {
 		super();
 		this.nombre = nombre;
 		this.correo = correo;
 		this.contrasena = contrasena;
 		this.telefono = telefono;
-		total++;
-		this.id = total;
-	}//constructor
-	
-	//CONSTRUCTOR VACIO
-	public Usuario() {
-		total++;
-		this.id = total;
-	}//constructor
+		this.id=id; 
+		this.rol_idrol=rol_idrol;
+	}// constructor
 
-	//GETTERS Y SETTERS
+	// CONSTRUCTOR VACIO
+	public Usuario() {
+
+	}// constructor
+
+	// GETTERS Y SETTERS
 	public String getNombre() {
 		return nombre;
-	}//getNombre
+	}// getNombre
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}//SetNombre
+	}// SetNombre
 
 	public String getCorreo() {
 		return correo;
-	}//getCorreo
+	}// getCorreo
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}//setCorreo
+	}// setCorreo
 
 	public String getContrasena() {
 		return contrasena;
-	}//getContrasena
+	}// getContrasena
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
-	}//setContrasena
+	}// setContrasena
 
 	public String getTelefono() {
 		return telefono;
-	}//getTelefono
+	}// getTelefono
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}//setTelefono
+	}// setTelefono
 
-	public static int getTotal() {
-		return total;
-	}//getTotal
-
-	public static void setTotal(int total) {
-		Usuario.total = total;
-	}//setTotal
-
-	public int getId() {
+	public Long getId() {
 		return id;
-	}//getId
+		
+	}// getId
 
-	//TOSTRING
+		
+	public int getrol_idrol() {
+		return rol_idrol;
+	}
+
+	public void setrol_idrol(int rol_idrol) {
+		this.rol_idrol = rol_idrol;
+	}
+
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", correo=" + correo + ", contrasena=" + contrasena + ", telefono="
-				+ telefono + ", id=" + id + "]";
-	}//toString
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", contrasena=" + contrasena
+				+ ", telefono=" + telefono + ", rol_idrol=" + rol_idrol + "]";
+	}
+
+
 	
-}//class
+
+	// TOSTRING
+	
+//	@Override
+//	public String toString() {
+//		return "Usuario [nombre=" + nombre + ", correo=" + correo + ", contrasena=" + contrasena + ", telefono="
+//				+ telefono + ", id=" + id + "]";
+//	}// toString
+
+}// class
