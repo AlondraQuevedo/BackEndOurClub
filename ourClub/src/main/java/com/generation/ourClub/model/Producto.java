@@ -8,23 +8,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="producto")
 public class Producto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="idproducto", unique=true, nullable=false)
 	//propiedades de producto
+	private Long id;
 	private String nombre;
 	private String descripcion;
 	private double precio;
 	private double talla;
 	private int existencia;
-	private int id;
 	private String URL_imagen;
-	private static int total = 0;
+	
 	
 	//CONSTRUCTOR
-	public Producto(String nombre, String descripcion, double precio, double talla, int existencia, String uRL_imagen) {
+	public Producto(Long id, String nombre, String descripcion, double precio, double talla, int existencia, String uRL_imagen) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -32,8 +32,7 @@ public class Producto {
 		this.talla = talla;
 		this.existencia = existencia;
 		this.URL_imagen = uRL_imagen;
-		total++;
-		this.id = total;
+		this.id=id;
 	}//constructor
 	
 	//CONSTRUCTOR VACIO
@@ -90,7 +89,7 @@ public class Producto {
 		this.URL_imagen = uRL_imagen;
 	}//setURL_imagen
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}//getId
 
