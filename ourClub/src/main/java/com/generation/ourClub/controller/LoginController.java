@@ -3,6 +3,7 @@ package com.generation.ourClub.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +15,11 @@ import com.generation.ourClub.service.UsuariosService;
 
 @RestController
 @RequestMapping(path="/api/login/")//es para mapear con la ruta
+@CrossOrigin("*")
 public class LoginController {
 
 	private final UsuariosService usuariosService;//constante para traer los usuarios de usuario service
+	
 	@Autowired //crea instancia de usuario Service
 	public LoginController(UsuariosService usuariosService) {
 		this.usuariosService = usuariosService;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.generation.ourClub.model.Producto;
@@ -13,8 +14,8 @@ import com.generation.ourClub.model.Producto;
 public class ProductosService {
 
 	public final ProductosRepository productosRepository;
-	public final ArrayList<Producto> lista = new ArrayList<Producto>();
 	
+	@Autowired
 	//CONSTRUCTOR
 	public ProductosService(ProductosRepository productosRepository) {
 		this.productosRepository = productosRepository;
@@ -54,7 +55,6 @@ public class ProductosService {
 				if(descripcion!=null)tmpProducto.setDescripcion(descripcion);
 				if(uRL_imagen!=null)tmpProducto.setURL_imagen(uRL_imagen);
 				if(precio!=null && precio.doubleValue()>0)tmpProducto.setPrecio(precio.doubleValue());
-				
 				productosRepository.save(tmpProducto);
 				}else {
 					System.out.println("No existe el producto con el id" + id);
