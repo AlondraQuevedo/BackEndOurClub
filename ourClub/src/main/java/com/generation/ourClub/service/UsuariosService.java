@@ -64,14 +64,14 @@ public class UsuariosService {
 		}//if is present
 	}//updateusuario
 	// LOGIN
-		public String validateUsuario(Usuario usuario) {
-			String res = "Nombre de usuario o contraseña incorrectos ";
+		public boolean  validateUsuario(Usuario usuario) {
+			boolean res=false;
 			Optional<Usuario> userByName = usuariosRepository.findByUsername(usuario.getCorreo());
 			if (userByName.isPresent()) {
 				Usuario u = userByName.get();
 				
 				if (SHAUtils.verifyHash(usuario.getContrasena(), u.getContrasena())) {
-					res = "OK";
+					res = true;
 				}
 
 			}

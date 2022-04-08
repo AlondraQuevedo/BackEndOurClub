@@ -86,6 +86,7 @@ public class Usuario {
 		this.rol_idrol = rol_idrol;
 	}
 
+	// TOSTRING
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", contrasena=" + contrasena
@@ -95,12 +96,6 @@ public class Usuario {
 
 	
 
-	// TOSTRING
 	
-//	@Override
-//	public String toString() {
-//		return "Usuario [nombre=" + nombre + ", correo=" + correo + ", contrasena=" + contrasena + ", telefono="
-//				+ telefono + ", id=" + id + "]";
-//	}// toString
 
 }// class
