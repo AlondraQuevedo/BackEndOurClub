@@ -42,10 +42,10 @@ public class ProductosController {
 	}//getProducto
 	
 	//DELETE
-//	@DeleteMapping(path="{prodId}")//se pide el id para eliminar
-//	public Producto deleteProducto(@PathVariable("prodId") Long prodId) {
-//		return productosService.deleteProducto(prodId);
-//	}//deleteProducto
+	@DeleteMapping(path="{prodId}")//se pide el id para eliminar
+	public Producto deleteProducto(@PathVariable("prodId") Long prodId) {
+		return productosService.deleteProducto(prodId);
+	}//deleteProducto
 	
 	//POST
 	@PostMapping
@@ -58,12 +58,12 @@ public class ProductosController {
 	public Producto updateProducto(@PathVariable("proId") Long proId, 
 		@RequestParam(required=false) String nombre, 
 		@RequestParam(required=false) String descripcion,
-		@RequestParam(required=false) double precio,
-		@RequestParam(required=false) double talla,
-		@RequestParam(required=false) int existencia,
-		@RequestParam(required=false) int categoria_idcategorias,
+		@RequestParam(required=false) Double precio,
+		@RequestParam(required=false) Double talla,
+		@RequestParam(required=false) Integer existencia,
+		@RequestParam(required=false) Integer categoria_idcategorias,
 		@RequestParam(required=false) String URL_imagen){
-		return productosService.updateProducto(proId, nombre, descripcion, precio, talla, existencia, categoria_idcategorias, URL_imagen);
+		return productosService.updateProducto(proId, nombre, descripcion, talla, precio, existencia, categoria_idcategorias, URL_imagen);
 	}//class
 	
 

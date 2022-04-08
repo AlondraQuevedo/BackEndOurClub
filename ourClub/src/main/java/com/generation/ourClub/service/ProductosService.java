@@ -47,7 +47,7 @@ public class ProductosService {
 		}
 
 	//PUT PRODUCTO
-			public Producto updateProducto(Long id,String nombre, String descripcion,Double precio,Double talla, int existencia, int categoria_idcategorias, String uRL_imagen ) {
+			public Producto updateProducto(Long id,String nombre, String descripcion,Double precio,Double talla, Integer existencia, Integer categoria_idcategorias, String uRL_imagen ) {
 				Producto tmpProducto=null;
 				if(productosRepository.existsById(id)){
 					tmpProducto=productosRepository.findById(id).get();
@@ -61,6 +61,14 @@ public class ProductosService {
 				}
 				return tmpProducto;
 				
+			}
+			public Producto deleteProducto(Long id) {
+				Producto tmpProducto = null;
+				if (productosRepository.existsById(id) ) {
+					tmpProducto = productosRepository.findById(id).get();
+					productosRepository.deleteById(id);
+				}//exist
+				return tmpProducto;
 			}
 		 
 	
